@@ -11,5 +11,4 @@ export default function Vote() {
       <button onClick={resources.voteNo}> No </button> 
     </div>
   )
-  // Some comments
 }
