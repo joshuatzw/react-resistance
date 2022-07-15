@@ -42,6 +42,7 @@ export const ResourcesContext = createContext({
   votePass: 0,
   voteFail: 0,
   resultText: "",
+  resultNumbers: "",
   overallPass: 0,
   overallFail: 0,
   gameOverText: '',
@@ -80,6 +81,7 @@ export default function Resources(props) {
   const [votePass, setVotePass] = useState(0)
   const [voteFail, setVoteFail] = useState(0)
   const [resultText, setResultText] = useState()
+  const [resultNumbers, setResultNumbers] = useState('')
   const [overallPass, setOverallPass] = useState(0)
   const [overallFail, setOverallFail] = useState(0)
   const [gameOverText, setGameOverText] = useState()
@@ -110,6 +112,7 @@ export default function Resources(props) {
     votePass: 0,
     voteFail: 0,
     resultText: resultText,
+    resultNumbers: resultNumbers,
     overallPass: 0,
     overallFail: 0,
     gameOverText: gameOverText,
@@ -239,18 +242,18 @@ export default function Resources(props) {
   function pullCrewList(data) {
     setCurrentCrewList(data)
     console.log("crew list updated in resources: " + data);
-
-    // While pulling crew list, set up the captain number for the next round.
-    if (captainNumber < playerArray.length - 1){
-      setCaptainNumber(captainNumber + 1)
-    } else {
-      setCaptainNumber(0)
-    }
   }
 
   function missionLaunch() {
     setMissionOn(!missionOn)
     setVoteOn(!voteOn)
+
+    // Upon successful Mission Launch, set up the captain number for the subsequent round.
+    if (captainNumber < playerArray.length - 1){
+      setCaptainNumber(captainNumber + 1)
+    } else {
+      setCaptainNumber(0)
+    }
   }
 
   // VOTING SEQUENCE
@@ -280,12 +283,14 @@ export default function Resources(props) {
     if (votePass > voteFail) {
       console.log("Votes pass: " + votePass + ", Votes Fail: " + voteFail)
       setResultText("Mission Successful!")
+      setResultNumbers(`Passes: ${votePass} Fails: ${voteFail}`)
       setOverallPass(overallPass + 1)
       resetCounters()
       
     } else {
       console.log("Votes pass: " + votePass + ", Votes Fail: " + voteFail)
-      setResultText("Mission Fail")
+      setResultText(`Mission Failed!`)
+      setResultNumbers(`Passes: ${votePass} Fails: ${voteFail}`)
       setOverallFail(overallFail + 1)
       resetCounters()
     }
