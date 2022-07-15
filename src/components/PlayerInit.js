@@ -1,5 +1,6 @@
 import {useContext} from 'react'
 import { ResourcesContext } from '../store/ResourcesContext'
+import '../styling/PlayerInit.css'
 
 export default function PlayerInit() {
   const resources = useContext(ResourcesContext)
@@ -15,18 +16,18 @@ export default function PlayerInit() {
   
   
   return (
-    <div>
-      <h1> Names Please: </h1>
+    <div className='player-init form-group'>
+      <h1> Player Names: </h1>
       <form onSubmit={handleSubmit}>
-      {resources.playerArray.map((player)=>{
-        return(
-          <span key={player}>
-          <input placeholder={player} /> <br />
-          </span>
-        )
-      })}
-      <button type="submit"> Submit </button>
-    </form>
-  </div>
-  )
+        {resources.playerArray.map((player)=>{
+          return(
+            <span key={player}>
+            <input className='form-control' placeholder={player} /> <br />
+            </span>
+          )
+        })}
+        <button className='btn btn-warning mb-2' type="submit"> Submit </button>
+      </form>
+    </div>
+    )
 }

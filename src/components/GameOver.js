@@ -6,6 +6,9 @@ export default function GameOver() {
   const resources = useContext(ResourcesContext)
 
   return(
-    <h1> {resources.gameOverText} </h1>
+    <div>
+      <h1> {resources.gameOverText} </h1>
+      <button className="btn" onClick={resources.resetGame}> Play Again </button>
+    </div>
   )
 }

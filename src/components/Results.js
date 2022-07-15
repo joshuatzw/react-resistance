@@ -15,7 +15,7 @@ export default function Results() {
         {resources.resultText}
       </h1>
 
-      <button onClick={handleClick}> Continue </button>
+      <button className="btn view-results-button" onClick={handleClick}> Continue </button>
     </div>
   )
 }

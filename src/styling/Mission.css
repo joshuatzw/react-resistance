@@ -1,0 +1,40 @@
+  /* Green: #D9F8C4
+    Yellow: #F9F9C5
+    Orange: #FAD9A1
+    Red: #F37878
+    Darker Red: #EB4747
+    light Blue: #B2C8DF
+    darker Blue: #6E85B7
+
+ */
+
+body {
+  font-size: larger;
+}
+
+.mission-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-form input {
+  opacity: 0;
+}
+
+.form-check-input:checked + .player-label{
+ font-weight: 700;
+ color: #EB4747;
+}
+
+.mission-button {
+  margin-top: 10px;
+
+}
+
+.mission-container button {
+  background: #FAD9A1;
+}
+
+.mission-container button:hover {
+  background: #F9F9C5;
+}

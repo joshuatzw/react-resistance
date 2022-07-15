@@ -25,11 +25,13 @@ export const ResourcesContext = createContext({
   spyPos: [],
   identityArray: [],
   playerObject: {},
+  captainNumber: 0,
   introductionOn: true,
   playerInitOn: false,
   playerRevealOn: false,
   missionOn: false,
   voteOn: false,
+  beforeResultsOn: false,
   resultsOn: false,
   gameOverOn: false,
   currentPlayer: 0,
@@ -50,18 +52,22 @@ export const ResourcesContext = createContext({
   missionLaunch: (()=>null),
   voteYes: (()=>null),
   voteNo: (()=>null),
+  proceedToResults: (()=>null),
   nextMission: (()=>null),
+  resetGame: (()=>null),
 })
 
 export default function Resources(props) {
   const [numOfPlayers, setNumOfPlayers] = useState(0)
   const [playerArray, setPlayerArray] = useState([])
   const [identityArray, setIdentityArray] = useState([])
+  const [captainNumber, setCaptainNumber] = useState(0)
   const [introductionOn, setIntroductionOn] = useState(true)
   const [playerInitOn, setPlayerInitOn] = useState(false)
   const [playerRevealOn, setPlayerRevealOn] = useState(false)
   const [missionOn, setMissionOn] = useState(false)
   const [voteOn, setVoteOn] = useState(false)
+  const [beforeResultsOn, setBeforeResultsOn] = useState(false)
   const [resultsOn, setResultsOn] = useState(false)
   const [gameOverOn, setGameOverOn] = useState(false)
   const [spyPos, setSpyPos] = useState([])
@@ -87,11 +93,13 @@ export default function Resources(props) {
     spyPos: spyPos,
     identityArray: identityArray,
     playerObject: playerObject,
+    captainNumber: captainNumber,
     introductionOn: introductionOn,
     playerInitOn: playerInitOn,
     playerRevealOn: playerRevealOn,
     missionOn: missionOn,
     voteOn: voteOn,
+    beforeResultsOn: beforeResultsOn,
     resultsOn: resultsOn,
     gameOverOn: gameOverOn,
     currentPlayer: currentPlayer,
@@ -113,6 +121,8 @@ export default function Resources(props) {
     voteYes: voteYes,
     voteNo: voteNo,
     nextMission: nextMission,
+    proceedToResults: proceedToResults,
+    resetGame: resetGame,
   }
 
   // INTRODUCTION PAGE:
@@ -152,6 +162,10 @@ export default function Resources(props) {
     }    
     // I have a feeling I don't need this. 
     setSpyPos(tempSpyArray)
+
+    // Grabbing the last number from positions array to be the first captain.
+    let tempCaptain = positions[positions.length - 1]
+    setCaptainNumber(tempCaptain)
 
     // tempIdentityArray shows all as Resistance.
     // Use tempSpyArray to change it to spies.
@@ -225,6 +239,13 @@ export default function Resources(props) {
   function pullCrewList(data) {
     setCurrentCrewList(data)
     console.log("crew list updated in resources: " + data);
+
+    // While pulling crew list, set up the captain number for the next round.
+    if (captainNumber < playerArray.length - 1){
+      setCaptainNumber(captainNumber + 1)
+    } else {
+      setCaptainNumber(0)
+    }
   }
 
   function missionLaunch() {
@@ -232,15 +253,15 @@ export default function Resources(props) {
     setVoteOn(!voteOn)
   }
 
+  // VOTING SEQUENCE
   function voteYes() {
     if (votingIndex < currentCrewList.length - 1) {
     setVotingIndex(votingIndex + 1)
     setVotePass(votePass + 1)
-    console.log("voted yes")
     } else {
-      tabulateResult()
+      setVotePass(votePass + 1)
       setVoteOn(!voteOn)
-      setResultsOn(!resultsOn)
+      setBeforeResultsOn(!beforeResultsOn)
     }
   }
 
@@ -248,31 +269,56 @@ export default function Resources(props) {
     if (votingIndex < currentCrewList.length - 1) {
     setVotingIndex(votingIndex + 1)
     setVoteFail(voteFail + 1)
-    console.log("voted no")
     } else {
-      tabulateResult()
+      setVoteFail(voteFail + 1)
       setVoteOn(!voteOn)
-      setResultsOn(!resultsOn)
+      setBeforeResultsOn(!beforeResultsOn)
     }
   }
 
   function tabulateResult() {
     if (votePass > voteFail) {
+      console.log("Votes pass: " + votePass + ", Votes Fail: " + voteFail)
       setResultText("Mission Successful!")
       setOverallPass(overallPass + 1)
       resetCounters()
+      
     } else {
+      console.log("Votes pass: " + votePass + ", Votes Fail: " + voteFail)
       setResultText("Mission Fail")
       setOverallFail(overallFail + 1)
       resetCounters()
     }
   }
 
+  // RESULTS PAGE
+  function proceedToResults() {
+    tabulateResult()
+    setBeforeResultsOn(!beforeResultsOn)
+    setResultsOn(!resultsOn)
+  }
+  
+
   // Reset all voting-related counters
   function resetCounters() {
     setVoteFail(0)
     setVotePass(0)
     setVotingIndex(0)
+  }
+
+  // Reset Game
+  function resetGame() {
+    setOverallPass(0)
+    setOverallFail(0)
+    resetCounters()
+    setNumOfPlayers(0)
+    setPlayerArray([])
+    setIdentityArray([])
+    setPlayerObject({})
+    setCurrentMissionNumber(0)
+    setCurrentPlayer(0)
+    setGameOverOn(false)
+    setIntroductionOn(true)
   }
 
   return(

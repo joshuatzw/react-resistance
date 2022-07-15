@@ -5,6 +5,7 @@ import Mission from './Mission'
 import Vote from './Vote'
 import Results from './Results'
 import GameOver from './GameOver'
+import BeforeResults from './BeforeResults'
 
 import { ResourcesContext } from '../store/ResourcesContext'
 import { useContext } from 'react'
@@ -15,13 +16,14 @@ export default function Main() {
 
   return (
     <div>
-    {resources.introductionOn ? <Introduction /> : null}
-    {resources.playerInitOn ? <PlayerInit /> : null}
-    {resources.playerRevealOn ? <CurrentPlayer /> : null}
-    {resources.missionOn ? <Mission />: null }
-    {resources.voteOn ? <Vote /> : null}
-    {resources.resultsOn ? <Results /> : null}
-    {resources.gameOverOn ? <GameOver /> : null}
+      {resources.introductionOn ? <Introduction /> : null}
+      {resources.playerInitOn ? <PlayerInit /> : null}
+      {resources.playerRevealOn ? <CurrentPlayer /> : null}
+      {resources.missionOn ? <Mission />: null }
+      {resources.voteOn ? <Vote /> : null}
+      {resources.beforeResultsOn ? <BeforeResults /> : null }
+      {resources.resultsOn ? <Results /> : null}
+      {resources.gameOverOn ? <GameOver /> : null}
     </div>
 
   )

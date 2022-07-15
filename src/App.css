@@ -1,0 +1,56 @@
+/* Green: #D9F8C4
+    Yellow: #F9F9C5
+    Orange: #FAD9A1
+    Red: #F37878
+    Darker Red: #EB4747
+    light Blue: #B2C8DF
+    darker Blue: #6E85B7
+
+ */
+
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  background-image: linear-gradient(315deg, #EB4747, #F9F9C5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+
+button {
+  border-radius: 6px;
+}
+
+
+
+
+
+
+/* REVEAL PAGE */
+/* break line for button */
+
+div .reveal {
+  margin: 10px auto;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: 500;
+}
+
+
+.reveal-content {
+  margin: 20px 0 0 0;
+}
+
+
+.inner-reveal-content::after {
+  content: "\a";
+  white-space: pre;
+}

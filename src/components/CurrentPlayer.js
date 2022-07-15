@@ -15,14 +15,14 @@ export default function CurrentPlayer(props) {
   }
 
   return(
-   <div>
+   <div className="reveal">
     <h1> {resources.playerArray[resources.currentPlayer]} </h1> 
-    <button onClick={handleReveal}> Reveal </button>
+    <button className="btn" onClick={handleReveal}> Reveal </button>
     
     {reveal 
-    ? <div> 
-        {resources.playerObject[resources.playerArray[resources.currentPlayer]]} 
-        <button onClick={nextPlayer}> Next Player </button>
+    ? <div className="reveal-content"> 
+        <span className="inner-reveal-content" >{resources.playerObject[resources.playerArray[resources.currentPlayer]]} </span>
+        <button className="btn" onClick={nextPlayer}> Next Player </button>
       </div>
     : null}
     

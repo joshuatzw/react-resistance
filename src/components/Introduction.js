@@ -1,5 +1,6 @@
 import { ResourcesContext } from "../store/ResourcesContext"
 import { useContext } from "react"
+import '../styling/Introduction.css'
 
 export default function Introduction() {
 
@@ -12,12 +13,15 @@ export default function Introduction() {
   }
 
   return(
-    <div>
-      <h1> Welcome to resistance, how many players are playing today? </h1>
-      <form onSubmit={submitHandler}>
-        <input type="number" max="10"/>
-        <button type="submit"> Submit </button>
-      </form>
+    <div className="introduction">
+      <h1> Welcome to resistance! </h1>
+      <p>how many players are playing today? </p>
+      <div className="introduction-input">
+        <form onSubmit={submitHandler}>
+          <input className="form-control" type="number" max="10"/>
+          <button className="btn" type="submit"> Submit </button>
+        </form>
+      </div>
     </div>
   )
 }

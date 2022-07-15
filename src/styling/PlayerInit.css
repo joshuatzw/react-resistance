@@ -1,0 +1,12 @@
+.player-init {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 30rem;
+}
+
+
+.player-init h1 {
+  margin-bottom: 2rem;
+}

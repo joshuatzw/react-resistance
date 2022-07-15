@@ -1,0 +1,17 @@
+/* Green: #D9F8C4
+    Yellow: #F9F9C5
+    Orange: #FAD9A1
+    Red: #F37878
+    Darker Red: #EB4747
+    light Blue: #B2C8DF
+    darker Blue: #6E85B7
+
+ */
+
+ .view-results-button {
+  width: 200px;
+ }
+
+ .view-results-button:hover {
+  background: rgb(233, 231, 231)
+ }

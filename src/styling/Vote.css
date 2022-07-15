@@ -1,0 +1,41 @@
+/*  Green: #D9F8C4
+    Hover Green: #a1bd8e;
+    Yellow: #F9F9C5
+    Orange: #FAD9A1
+    Red: #F37878
+    Hover Red: #b43636;
+    Darker Red: #EB4747
+    light Blue: #B2C8DF
+    darker Blue: #6E85B7
+ */
+
+
+
+.vote-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.vote-button-container button {
+  margin: 10px;
+}
+
+.vote-button-yes:hover  {
+  background: #D9F8C4;
+  width: 100px;
+}
+
+.vote-button-yes{
+  background: #cae7b7;
+  width: 100px;
+}
+
+.vote-button-no:hover {
+  background: #EB4747;
+  width: 100px;
+}
+
+.vote-button-no {
+  background: #c83d3d;
+  width: 100px;
+}
