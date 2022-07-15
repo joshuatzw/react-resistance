@@ -21,9 +21,11 @@ export default function PlayerInit() {
       <form onSubmit={handleSubmit}>
         {resources.playerArray.map((player)=>{
           return(
-            <span key={player}>
-            <input className='form-control' placeholder={player} /> <br />
-            </span>
+            <div className='col-xs-3'>
+              <span key={player}>
+              <input className='form-control' placeholder={player} /> <br />
+              </span>
+            </div>
           )
         })}
         <button className='btn btn-warning mb-2' type="submit"> Submit </button>

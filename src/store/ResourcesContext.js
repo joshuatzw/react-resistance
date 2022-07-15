@@ -140,7 +140,7 @@ export default function Resources(props) {
     let tempIdentityArray = []
     for (let i = 0; i < data; i++) {
       let j = i + 1
-      emptyArray.push("player "+ j)
+      emptyArray.push("Player "+ j)
       positions.push(i)
       tempIdentityArray.push("Resistance")
     }
