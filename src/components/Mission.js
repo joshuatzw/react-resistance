@@ -36,7 +36,8 @@ export default function Mission() {
     <div className='mission-container'>
       <h1> Mission {resources.currentMissionNumber + 1} </h1>
       <h2> Crew Captain: {resources.playerArray[resources.captainNumber]}</h2>
-      <h2> Crew Size: {resources.crewSizeObject[resources.currentMissionNumber + 1]}</h2>
+      <h3> Crew Size: {resources.crewSizeObject[resources.currentMissionNumber + 1]}</h3>
+      <p> {resources.playerArray[resources.captainNumber]}, please select {resources.crewSizeObject[resources.currentMissionNumber + 1]} players to go on this mission.</p>
       <h3> {error ? errorMessage : null} </h3>
 
       <form class='mission-form' onSubmit={handleSubmit}>

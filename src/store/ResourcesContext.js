@@ -56,6 +56,7 @@ export const ResourcesContext = createContext({
   proceedToResults: (()=>null),
   nextMission: (()=>null),
   resetGame: (()=>null),
+  reverseIntroBoolean: (()=>null),
 })
 
 export default function Resources(props) {
@@ -126,6 +127,7 @@ export default function Resources(props) {
     nextMission: nextMission,
     proceedToResults: proceedToResults,
     resetGame: resetGame,
+    reverseIntroBoolean: reverseIntroBoolean,
   }
 
   // INTRODUCTION PAGE:
@@ -177,6 +179,11 @@ export default function Resources(props) {
       tempIdentityArray[tempSpyArray[i]] = "Spy"
     }
     setIdentityArray(tempIdentityArray)
+  }
+
+  function reverseIntroBoolean() {
+    setIntroductionOn(true)
+    setPlayerInitOn(false)
   }
 
   // PLAYER INIT PAGE:

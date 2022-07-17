@@ -9,15 +9,25 @@ export default function PlayerInit() {
     e.preventDefault();
     let nameArray = []
     for (let i = 0; i < resources.numOfPlayers; i++) {
-      nameArray.push(e.target[i].value)
+      if (e.target[i].value !== '') {
+        console.log(e.target[i].value)
+        nameArray.push(e.target[i].value)
+      }
     }
-    resources.grabNames(nameArray)
+    if (resources.playerArray.length === nameArray.length) {
+      resources.grabNames(nameArray)
+    } else {
+      nameArray =[]
+      console.log("Please check name fields, cannot be empty")
+    }
   }
+  
   
   
   return (
     <div className='player-init form-group'>
       <h1> Player Names: </h1>
+      <p> Please input player names below: </p>
       <form onSubmit={handleSubmit}>
         {resources.playerArray.map((player)=>{
           return(
@@ -28,6 +38,7 @@ export default function PlayerInit() {
             </div>
           )
         })}
+        <button className='btn btn-warning mb-2' onClick={resources.reverseIntroBoolean}> Back </button>
         <button className='btn btn-warning mb-2' type="submit"> Submit </button>
       </form>
     </div>
